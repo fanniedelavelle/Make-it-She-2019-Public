@@ -1,0 +1,81 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+
+<head>
+    <title>Make it She</title>
+    <style type="text/css">
+    * {
+        user-select: none;
+    }
+    a:focus {
+        outline: 0;
+    }
+    body {
+        margin: 10px;
+        white-space: nowrap;
+        width: 200px;
+    }
+
+    h1 {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 15px;
+        text-align: center;
+        border-bottom: 1px solid #aaa;
+    }
+
+    #links-area {
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+
+    #tweet {
+        margin-left: 10px;
+    }
+    #tweetB {
+        float: left;
+        background-image: url('twt.png');
+        width: 56px;
+        height: 22px;
+        background-size: 100% 100%;
+    }
+    .switch-wrapper {
+        float: right;
+        margin-top: 3px;
+    }
+    #content {
+        display: none;
+    }
+    #disabled {
+        display: none;
+    }
+    </style>
+    <link rel="stylesheet" href="jquery.switchButton.css">
+</head>
+
+<body>
+    <div id="stats">
+        <h1 id="content"><span id="malep">0</span>% male presence <p>vs<p> <span id="femalep">0</span>% female presence</h1>
+        <h1 id="disabled">Extension disabled</h1>
+        <div id="links-area">
+            <div id="tweet">
+                <a id="tweetB" href="#"></a>
+            </div>
+            <div class="switch-wrapper">
+                <input id="on-off" type="checkbox" value="1" checked>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src='jquery.min.js'></script>
+<script src="jquery-ui.min.js"></script>
+<script src="jquery.switchButton.js"></script>
+<script src='popup.js'></script>
+
+</html>
