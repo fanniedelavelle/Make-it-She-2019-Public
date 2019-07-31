@@ -1,7 +1,7 @@
 
 var turn_on = false; // Default
 var word_dict = window.word_dict;
-var all_words = Object.assign( {}, name_dict, word_dict );
+var all_words = Object.assign( {} word_dict );
 
 var regex_word = new RegExp( "\\b" + Object.keys( word_dict ).join("\\b|\\b"), "gi" );
 
@@ -10,8 +10,8 @@ var m_percent = 0, f_percent = 0;
 var processed = false;
 var turnMr = false;
 
-var all_male_words = Object.keys( word_dict ).concat( Object.keys( name_dict ) );
-var all_female_words = Object.values( word_dict ).concat( Object.values( name_dict ) );
+var all_male_words = Object.keys( word_dict );
+var all_female_words = Object.values( word_dict );
 
 //
 
@@ -53,37 +53,6 @@ function applyContent () {
 
             }
 
-        }
-
-        if ( words.length == 0 ) {
-
-            return str;
-
-        }
-
-        // Delete surname after Mr, Ms, M, Mme, Lady, Lord
-
-        for ( var i = 0; i < words.length; i ++ ) {
-
-            var w = words[ i ].replace( /[!?,.;`' ]/, '' );
-
-            if ( w === 'Mr' || w === 'Ms' || w === 'M' || w === 'Mme' || w === 'Lady' || w === 'Lord' ) {
-
-                words.splice( i + 1, 1 );
-
-            }
-
-        }
-
-        // Delete surname after female name
-
-        for ( var i = 0; i < words.length; i ++ ) {
-
-            if ( values_name.indexOf( words[ i ].toUpperCase() ) !== -1 || name_dict[ words[ i ] ] && name_dict[ words[ i + 1 ] ] ) {
-
-                words.splice( i + 1, 1 );
-
-            }
 
         }
 
@@ -102,87 +71,6 @@ function applyContent () {
                 f_count ++;
 
             }
-
-        }
-
-        // Replace
-
-        str = str.replace( regex_word, function ( matched, index, input ) {
-
-            var lastSymbol = input[ index + matched.length ] || '';
-
-            if ( lastSymbol !== '"' && lastSymbol !== '`' && lastSymbol !== "'" && lastSymbol !== '' && lastSymbol !== ',' && lastSymbol !== '.' && lastSymbol !== ')' && lastSymbol !== ';' && lastSymbol !== '!' && lastSymbol !== '?' && lastSymbol !== ' ' ) {
-
-                return matched;
-
-            }
-
-            if ( matched === 'Mr' || matched === 'M' || matched === 'Lord' ) {
-
-                // Delete surname after Mr, Ms, M, Mme, Lady, Lord
-                turnMr = true;
-
-            }
-
-            if ( words.indexOf( matched ) >= 0 ) {
-
-                var replacement = '';
-
-                if ( typeof( all_words[ matched ] ) === 'undefined' ) {
-
-                    replacement = all_words[ matched.toLowerCase() ];
-
-                    if ( matched[0] == matched[0].toUpperCase() ) {
-
-                        if ( replacement ) {
-
-                            replacement = replacement.charAt(0).toUpperCase() + replacement.slice(1);
-
-                        }
-
-                    }
-
-                } else {
-
-                    replacement = all_words[ matched ];
-
-                }
-
-                return '<span class="makeitshe ignore-css replacement">' + replacement + '<span class="ignore-css tooltiptext">' + matched + '</span></span>';
-
-            } else {
-
-                return matched;
-
-            }
-
-        });
-
-        str = str.replace( regex_name, function ( matched ) {
-
-            if ( turnMr === true && words.length === 1 ) {
-
-                turnMr = false;
-                return matched;
-
-            }
-
-            if ( words.indexOf( matched ) >= 0 ) {
-
-                replacement = all_words[ matched ];
-                return '<span class="makeitshe ignore-css replacement">' + replacement + '<span class="ignore-css tooltiptext">' + matched + '</span>' + '</span>';
-
-            } else {
-
-                return matched;
-
-            }
-
-        });
-
-        return str;
-
-    });
 
     m_percent = Math.round( m_count / (m_count + f_count) * 100 );
     f_percent = Math.round( f_count / (m_count + f_count) * 100 );
