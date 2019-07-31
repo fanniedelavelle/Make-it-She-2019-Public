@@ -1,16 +1,13 @@
 
 var turn_on = false; // Default
-var name_dict = window.name_dict;
 var word_dict = window.word_dict;
 var all_words = Object.assign( {}, name_dict, word_dict );
 
 var regex_word = new RegExp( "\\b" + Object.keys( word_dict ).join("\\b|\\b"), "gi" );
-var regex_name = new RegExp( "\\b" + Object.keys( name_dict ).join("|"), "g" );
 
 var m_count = 0, f_count = 0;
 var m_percent = 0, f_percent = 0;
 var processed = false;
-var values_name = fnames;
 var turnMr = false;
 
 var all_male_words = Object.keys( word_dict ).concat( Object.keys( name_dict ) );
