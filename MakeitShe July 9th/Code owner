@@ -1,0 +1,8 @@
+# This is a comment.
+
+# The owner @fanniedelavelle will be the default owner for everything in
+# the repo. Unless a later match takes precedence or unless specific 
+# authorization is provided to a specific person in advance,
+# @fanniedelavelle will be requested for
+# review when someone opens a pull request.
+*       @fanniedelavelle
