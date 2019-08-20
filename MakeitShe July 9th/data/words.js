@@ -336,7 +336,6 @@ window.word_dict = {
   "ottomen": "ottowomen",
   "outdoorsman": "outdoorswoman",
   "outdoorsmen": "outdoorswomen",
-  "overman": "overwoman",
   "pivotman": "pivotwoman",
   "placeman": "placewoman",
   "plainclothesman": "plainclotheswoman",
