@@ -1,0 +1,27 @@
+{
+    "manifest_version": 2,
+    "name": "Make it She",
+    "description": "[This extension aims to replace certain male words with their female counterparts.]",
+    "version": "1.0",
+    "background": {
+      "persistent": false,
+      "scripts": ["background.js"]
+    },
+    "icons":
+    {
+        "120": "icon_on.png"
+    },
+    "browser_action":
+    {
+        "default_popup": "popup.html",
+        "default_icon": "icon_off.png"
+    },
+    "content_scripts": [
+    {
+        "matches": ["*://*/*"],
+        "js": ["jquery.min.js", "data/associative.js", "data/words.js", "data/fnames.js", "content.js"],
+        "css": ["style.css"],
+        "run_at": "document_end"
+    }],
+    "permissions": ["activeTab", "storage", "tabs"]
+}
