@@ -1,0 +1,275 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+
+<html>
+
+
+<head>
+    <title>Make it She</title>
+    <link rel="stylesheet" href="jquery.switchButton.css">
+    <style>
+        * {
+            user-select: none;
+        }
+
+        a:focus {
+            outline: 0;
+        }
+
+        body {
+            margin: 10px;
+            width: 290px;
+        }
+
+        /* input#sender-email {
+            margin-bottom: 5px;
+            margin-top: 10px;
+            width: 100%;
+            padding: 9px 0px;
+            background-color: #edf6fa;
+            border: none;
+        } */
+
+        h1 {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 15px;
+            text-align: center;
+            border-bottom: 1px solid #aaa;
+        }
+
+        #links-area {
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        #tweet {
+            margin-left: 10px;
+        }
+
+        #tweetB {
+            float: left;
+            background-image: url('twt.png');
+            width: 56px;
+            height: 22px;
+            background-size: 100% 100%;
+        }
+
+        .switch-wrapper {
+            float: right;
+            margin-top: 3px;
+        }
+
+        #content {
+            display: none;
+        }
+
+        #disabled {
+            display: none;
+        }
+
+        a.canvasjs-chart-credit {
+            color: white !important;
+        }
+
+        /* button#report-error {
+            cursor: pointer;
+            float: right;
+            margin-top: -27px;
+            border: none;
+            background: none;
+            padding: none;
+            font-weight: 600;
+            color: #0088CC;
+            outline: none;
+        }
+
+        a#send-ref-mail {
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: none;
+            font-weight: 600;
+            color: #0088CC;
+            outline: none;
+        }
+
+        textarea#email-message {
+            height: 100px;
+            resize: vertical;
+            min-height: 40px;
+            border: none;
+            background-color: #edf6fa;
+            width: -webkit-fill-available;
+        }
+
+        button#btn-send-message,
+        #btn-back {
+            cursor: pointer;
+            background: #0088CC;
+            color: white;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: none;
+            margin-top: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            height: 35px;
+            width: 49%;
+        }
+
+        button#generate-pdf-content,
+        #back-dashboard {
+            cursor: pointer;
+            background: #0088CC;
+            color: white;
+            font-weight: 600;
+            padding: 8px 30px;
+            border: none;
+            margin-top: 5px;
+            margin-left: 50px;
+        }
+
+        button#prev,
+        #next {
+            cursor: pointer;
+            background: #0088CC;
+            margin: 5px;
+            padding: 5px 16px;
+            color: white;
+            font-weight: 600;
+            border: none;
+        }
+
+        .autocomplete {
+            width: 100%;
+            position: relative;
+            display: inline-block;
+        }
+
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+        }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+        .autocomplete-items div:hover {
+            background-color: #e9e9e9;
+        }
+
+        .autocomplete-active {
+            background-color: #0088CC;
+             !important;
+            color: #ffffff;
+        }
+
+        a:link {
+            text-decoration: none;
+            color: #0088CC;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #0088CC;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        a:active {
+            text-decoration: none;
+        } */
+    </style>
+
+</head>
+
+<body>
+    <div id="stats">
+        <div id="content">
+            <div id="loader" class="row text-center" style="display:none;text-align:center;">
+                <img src="Spinner-1s-200px.gif" alt="NotesReport" class="loader" style="width:50px;">
+            </div>
+            <div id="chartContainer" style="height: 210px; width: 100%; display: none"></div>
+        </div>
+
+        <!-- Uncomment below to show the form content -->
+
+        <!-- <div id="email-content" style="display: none">
+            <input type="text" id="sender-email" placeholder="Subject">
+            <div class="autocomplete">
+                <textarea id="email-message" placeholder="Message"></textarea>
+            </div>
+
+            <button id="btn-send-message">SEND MESSAGE</button>
+            <button id="btn-back">BACK</button>
+        </div> -->
+        <div id="pdf-content" style="display:none;">
+            <div id="pdf-text">
+                <div id="loading-info">
+                    Extracting text ... hold tight !
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!--  <h1 id="content">
+            <span id="malep">0</span>% male presence <p>vs<p> <span id="femalep">0</span>% female presence</h1> -->
+
+        <h1 id="disabled">Extension disabled</h1>
+
+        <div id="links-area">
+            <div id="tweet">
+                <a id="tweetB" href="#"></a>
+            </div>
+            <div class="switch-wrapper">
+                <input id="on-off" type="checkbox" value="1" checked>
+            </div>
+        </div>
+
+        <!-- Uncomment below to show the "report a site" feature and the "bug report" feature -->
+
+        <!-- <hr> -->
+        <!-- <div id="links-area">
+            <div id="tweet">
+                <p>See a gender-biased website? <a href="#" id="send-ref-mail">Send us the URL</a> and
+                    we'll let the website owner know!</p>
+                <p> We'll update you on progress via the <a href="#" id="go-to-twitter">@MakeitShe</a> Twitter
+                    account</p>
+
+            </div> -->
+
+
+
+        <!-- <div>
+            <hr>
+            <p>See something, say something: report errors <a href="#" id="report-error">here</a>.</p>
+        </div> -->
+
+    </div>
+</body>
+
+<script src='jquery.min.js'></script>
+<script src="jquery-ui.min.js"></script>
+<script src="jquery.switchButton.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src='smtp.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.1.266/build/pdf.min.js"></script>
+<script src='popup.js'></script>
+
+</html>
