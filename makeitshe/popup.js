@@ -34,7 +34,7 @@ function setStats(stats) {
         var chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
             title: {
-                text: "Gender Percentage",
+                text: "Mentions of men and women",
             },
             data: [{
                 type: "pie",
@@ -44,8 +44,8 @@ function setStats(stats) {
                 yValueFormatString: "##0.00\"%\"",
                 indexLabel: "{label} {y}",
                 dataPoints: [
-                    { y: Math.round(male), label: "Male", color: "purple" },
-                    { y: Math.round(female), label: "Female", color: "green" }
+                    { y: Math.round(male), label: "Men", color: "purple" },
+                    { y: Math.round(female), label: "Women", color: "green" }
                 ]
             }]
         });
@@ -334,7 +334,7 @@ function getPdfContent(content) {
             var chart = new CanvasJS.Chart("chartContainer", {
                 animationEnabled: true,
                 title: {
-                    text: "Gender Percentage",
+                    text: "Mentions of men and women",
                 },
                 data: [{
                     type: "pie",
@@ -344,8 +344,8 @@ function getPdfContent(content) {
                     yValueFormatString: "##0.00\"%\"",
                     indexLabel: "{label} {y}",
                     dataPoints: [
-                        { y: Math.round(m_percent), label: "Male", color: "purple" },
-                        { y: Math.round(f_percent), label: "Female", color: "green" }
+                        { y: Math.round(m_percent), label: "Men", color: "purple" },
+                        { y: Math.round(f_percent), label: "Women", color: "green" }
                     ]
                 }]
             });
