@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
             f = f || 0;
 
             tweetText = Math.round(m) + "% mentions of men vs " + Math.round(f) + "% women on this page. Let's bridge the gender gap!";
-            tweetUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText) + "&url=" + tabs[0].url + "&via=makeitshe";
+            tweetUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText) + "&url=" + tabs[0].url + "&via=makeitshe" + "www.makeitshe.org";
 
             chrome.tabs.create({
                 active: true,
