@@ -141,12 +141,27 @@ document.addEventListener('DOMContentLoaded', () => {
             m = m || 0;
             f = f || 0;
 
-            tweetText = Math.round(m) + "% mentions of men vs " + Math.round(f) + "% women on this page. Let's bridge the gender gap!";
-            tweetUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText) + "&url=" + tabs[0].url + "&via=makeitshe" + "www.makeitshe.org";
+            let tweetText = Math.round(m) + "% mentions of men vs " + Math.round(f) + "% women on " + tabs[0].url + " Let's bridge the gender gap!";
+            let tweetUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText) + "&url=https://www.makeitshe.org/&via=makeitshe";
 
             chrome.tabs.create({
                 active: true,
                 url: tweetUrl
+            });
+
+        });
+
+        $('#fbShare').click(function (event) {
+
+            m = m || 0;
+            f = f || 0;
+ 
+            let fbText = Math.round(m) + "% mentions of men vs " + Math.round(f) + "% women on " + tabs[0].url + " Let's bridge the gender gap!";
+            let fbUrl = "https://www.facebook.com/sharer/sharer.php?u=" + "https://www.makeitshe.org/&quote="+ fbText;
+
+            chrome.tabs.create({
+                active: true,
+                url: fbUrl
             });
 
         });
