@@ -11,6 +11,8 @@
 <head>
     <title>Make it She</title>
     <link rel="stylesheet" href="jquery.switchButton.css">
+    <!-- Script for the fontawesome icons -->
+    <script src="7ff2c0391b.js" crossorigin="anonymous"></script> 
     <style>
         * {
             user-select: none;
@@ -53,18 +55,24 @@
 
         #tweetB {
             float: left;
-            background-image: url('twt.png');
-            width: 56px;
+            width: 70px;
             height: 22px;
-            background-size: 100% 100%;
+            border: none;
+            background-color: #1DA1F2;
+            color: white;
+            border-radius: 3px;
+            margin-right: 5px;
         }
 
         #fbShare {
             float: left;
-            background-image: url('fb.jpg');
-            width: 56px;
+            width: 70px;
             height: 22px;
-            background-size: 100% 100%;
+            border: none;
+            background-color: #4267B2;
+            color: white;
+            border-radius: 3px;
+            margin-right: 5px;
         }
 
         .switch-wrapper {
@@ -243,10 +251,10 @@
 
         <div id="links-area">
             <div id="tweet">
-                <a id="tweetB" href="#"></a>
+                <button id="tweetB"><i class="fab fa-twitter"></i> Tweet</button>
             </div>
             <div id="facebook">
-                <a id="fbShare" href="#"></a>
+                <button id="fbShare"><i class="fab fa-facebook-square"></i> Share</button>
             </div>
             <div class="switch-wrapper">
                 <input id="on-off" type="checkbox" value="1" checked>
